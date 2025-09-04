@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redesign de Cozinha - Estilo Escandinavo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #4a5568;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .comparison-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .before-after {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .before-after:hover {
+            transform: translateY(-5px);
+        }
+
+        .before-after h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+            text-align: center;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(45deg, #e2e8f0, #cbd5e0);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .before-image {
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+        }
+
+        .after-image {
+            background: linear-gradient(135deg, #f0fff4, #e6fffa);
+        }
+
+        .image-placeholder::before {
+            content: "🖼️";
+            font-size: 3rem;
+            opacity: 0.7;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .feature-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .feature-card p {
+            color: #4a5568;
+            line-height: 1.7;
+        }
+
+        .color-palette {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .color-palette h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: #2d3748;
+        }
+
+        .colors {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .color-item {
+            text-align: center;
+            padding: 1rem;
+            border-radius: 12px;
+            background: #f7fafc;
+        }
+
+        .color-swatch {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin: 0 auto 0.5rem;
+            border: 3px solid white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .color-name {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.25rem;
+        }
+
+        .color-hex {
+            font-size: 0.9rem;
+            color: #718096;
+            font-family: monospace;
+        }
+
+        .materials-section {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .materials-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: #2d3748;
+        }
+
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .material-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background: #f7fafc;
+            border-radius: 12px;
+            border-left: 4px solid #4299e1;
+        }
+
+        .material-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+
+        .material-info h5 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+            color: #2d3748;
+        }
+
+        .material-info p {
+            font-size: 0.9rem;
+            color: #4a5568;
+        }
+
+        .cta-section {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+        }
+
+        .cta-section h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .comparison-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏠 Redesign de Cozinha - Estilo Escandinavo</h1>
+            <p>Transformando sua cozinha funcional em um espaço moderno, minimalista e acolhedor seguindo os princípios do design nórdico</p>
+        </div>
+
+        <div class="comparison-section">
+            <div class="before-after">
+                <h3>🔄 Antes - Cozinha Atual</h3>
+                <div class="image-placeholder before-image">
+                    <div style="text-align: center; color: #4a5568;">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">🏠</div>
+                        <div>Azulejos brancos tradicionais</div>
+                        <div>Armários bege/creme</div>
+                        <div>Granito escuro na bancada</div>
+                        <div>Layout funcional mas datado</div>
+                    </div>
+                </div>
+                <ul style="color: #4a5568; padding-left: 1.5rem;">
+                    <li>Azulejos brancos quadrados com rejunte escuro</li>
+                    <li>Armários superiores e inferiores em tons bege</li>
+                    <li>Bancada de granito escuro</li>
+                    <li>Piso de cerâmica branca quadriculada</li>
+                    <li>Eletrodomésticos brancos tradicionais</li>
+                </ul>
+            </div>
+
+            <div class="before-after">
+                <h3>✨ Depois - Estilo Escandinavo</h3>
+                <div class="image-placeholder after-image">
+                    <div style="text-align: center; color: #2d3748;">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">🌲</div>
+                        <div>Design minimalista e clean</div>
+                        <div>Madeira clara natural</div>
+                        <div>Branco e tons neutros</div>
+                        <div>Iluminação natural abundante</div>
+                    </div>
+                </div>
+                <ul style="color: #4a5568; padding-left: 1.5rem;">
+                    <li>Paredes brancas lisas (sem azulejos)</li>
+                    <li>Armários de madeira clara natural</li>
+                    <li>Bancada de mármore branco ou madeira</li>
+                    <li>Piso de madeira clara ou porcelanato</li>
+                    <li>Eletrodomésticos integrados e modernos</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🌲</div>
+                <h4>Madeira Natural</h4>
+                <p>Uso de madeira clara natural (carvalho, pinho ou bétula) para armários, pisos e detalhes, criando calor e textura.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚪</div>
+                <h4>Paleta Neutra</h4>
+                <p>Branco como cor dominante, complementado por tons de cinza, bege e marrom claro para criar serenidade.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💡</div>
+                <h4>Iluminação Natural</h4>
+                <p>Maximização da luz natural com janelas grandes, cortinas leves e iluminação artificial suave e difusa.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🧹</div>
+                <h4>Minimalismo</h4>
+                <p>Menos é mais: superfícies limpas, armários sem puxadas visíveis e decoração funcional e discreta.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌿</div>
+                <h4>Elementos Naturais</h4>
+                <p>Plantas verdes, flores secas e materiais naturais como linho, algodão e cerâmica artesanal.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔧</div>
+                <h4>Funcionalidade</h4>
+                <p>Cada elemento tem um propósito, com armazenamento inteligente e layout otimizado para o fluxo de trabalho.</p>
+            </div>
+        </div>
+
+        <div class="color-palette">
+            <h3>🎨 Paleta de Cores Escandinava</h3>
+            <div class="colors">
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #ffffff;"></div>
+                    <div class="color-name">Branco Puro</div>
+                    <div class="color-hex">#FFFFFF</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #f7fafc;"></div>
+                    <div class="color-name">Branco Antigo</div>
+                    <div class="color-hex">#F7FAFC</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #e2e8f0;"></div>
+                    <div class="color-name">Cinza Claro</div>
+                    <div class="color-hex">#E2E8F0</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #d69e2e;"></div>
+                    <div class="color-name">Dourado Suave</div>
+                    <div class="color-hex">#D69E2E</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #8b4513;"></div>
+                    <div class="color-name">Marrom Madeira</div>
+                    <div class="color-hex">#8B4513</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #2d3748;"></div>
+                    <div class="color-name">Cinza Escuro</div>
+                    <div class="color-hex">#2D3748</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="materials-section">
+            <h3>🛠️ Materiais Recomendados</h3>
+            <div class="materials-grid">
+                <div class="material-item">
+                    <div class="material-icon">🪵</div>
+                    <div class="material-info">
+                        <h5>Madeira Clara Natural</h5>
+                        <p>Carvalho, pinho ou bétula para armários e pisos</p>
+                    </div>
+                </div>
+                <div class="material-item">
+                    <div class="material-icon">🪨</div>
+                    <div class="material-info">
+                        <h5>Mármore Branco</h5>
+                        <p>Para bancadas e ilhas de cozinha</p>
+                    </div>
+                </div>
+                <div class="material-item">
+                    <div class="material-icon">🧱</div>
+                    <div class="material-info">
+                        <h5>Porcelanato</h5>
+                        <p>Piso em tons neutros com acabamento mate</p>
+                    </div>
+                </div>
+                <div class="material-item">
+                    <div class="material-icon">🔲</div>
+                    <div class="material-info">
+                        <h5>Armários Sem Puxadas</h5>
+                        <p>Sistema de abertura por toque ou ranhuras</p>
+                    </div>
+                </div>
+                <div class="material-item">
+                    <div class="material-icon">💎</div>
+                    <div class="material-info">
+                        <h5>Vidro Fosco</h5>
+                        <p>Para portas de armários e divisórias</p>
+                    </div>
+                </div>
+                <div class="material-item">
+                    <div class="material-icon">🔌</div>
+                    <div class="material-info">
+                        <h5>Eletrodomésticos Integrados</h5>
+                        <p>Forno, microondas e geladeira embutidos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h3>🚀 Pronto para Transformar sua Cozinha?</h3>
+            <p>Entre em contato para um orçamento personalizado e comece sua jornada para uma cozinha escandinava dos sonhos!</p>
+            <a href="#" class="btn">Solicitar Orçamento</a>
+        </div>
+    </div>
+</body>
+</html>
